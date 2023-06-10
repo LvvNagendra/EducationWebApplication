@@ -1,0 +1,218 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<title>Home page</title>
+</head>
+
+<body>
+
+	<!-- Navbar -->
+
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<a class="navbar-brand" href="#">Registration</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" fId="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="/">Home
+						<span class="sr-only">(current)</span>
+					</a></li>
+				<li class="nav-item active"><a class="nav-link" href="">Edit
+						Form</a></li>
+
+			</ul>
+		</div>
+	</nav>
+
+	<!-- Navbar -->
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 offset-md-3">
+				<div class="card">
+					<div class="card-body">
+						<h4 class="text-center text-primary">Edit User</h4>
+
+						<form th:action="@{/update}" method="post" th:object="${formModel}">
+
+							<input type="hidden" th:value="${formModel.fId}" name="fId">
+
+
+
+							<div class="form-group">
+								<label>Enter Full Name</label> <input type="text" class="form-control"
+									name="studentName" maxlength="48" size="38" minlength="3"
+									th:value="${formModel.studentName}">
+							</div>
+
+							<!--	<div class="form-group">
+								<label>Enter Address</label> <input type="text"
+									class="form-control" name="address">
+							</div>-->
+
+
+							<div class="form-group">
+								<label>Enter Email</label> <input type="text" class="form-control" name="studentEmail"
+									th:value="${formModel.studentEmail}">
+							</div>
+
+
+							<div class="form-group">
+								<label>Enter Phone No</label> <input type="number" class="form-control"
+									name="studentPhoneNumber" th:value="${formModel.studentPhoneNumber}">
+							</div>
+
+
+							<div class="form-group">
+								<label>Select Branch</label> <input type="text" class="form-control" name="selectBranch"
+									th:value="${formModel.selectBranch}">
+							</div>
+							<div class="form-group">
+								<label> Select Branch</label> <br>
+								<select name="selectBranch" th:value="${formModel.selectBranch}" id="pune">
+									<option value="Hydrabad">Hyderabad</option>
+									<option value="pune">pune</option>
+								</select>
+							</div>
+
+
+
+							<!--<div class="form-group">
+								<label>Select Course</label> <input type="text" class="form-control" name="selectCourse"
+									th:value="${formModel.selectCourse}">
+							</div>-->
+
+							<!--<div class="form-group">
+								<label>Select Course</label>
+								<br>
+								<select name="selectBranch" id="Select">
+									<option value="Online">CoreJava</option>
+									<option value="Offline">AdvanceJava</option>
+									<option value="Offline">webTtechnology</option>
+									<option value="Offline">Python</option>
+									<option value="Offline">JavaFullStack</option>
+									<option value="Offline">c</option>
+									<option value="Offline">c++</option>
+
+								</select>-->
+								
+								<div class="form-group">
+								<label>Select Course</label>
+								<select name="selectCourse" required="required" class="form-control" onchange="setFees()">
+									<option value="CoreJava">CoreJava</option>
+									<option value="AdvanceJava">AdvanceJava</option>
+									<option value="webTtechnology">webTtechnology</option>
+									<option value="Python">Python</option>
+									<option value="JavaFullStack">JavaFullStack</option>
+									<option value="c">c</option>
+									<option value="c++">c++</option>
+								</select>
+							</div>
+							
+						
+							
+							<div class="form-group">
+								<label>Fees</label>
+								<input type="text" class="form-control" name="fees" id="fees" pattern="[0-9]+"
+									title="Please enter a valid number" onchange="validateFees()" required>
+							</div>
+							
+
+							<div class="form-group">
+								<label>Select Mode</label><br>
+								<select name="selectOnlineOrOffline" th:value="${formModel.selectOnlineOrOffline}"
+									id="offline">
+									<option value="Online">Online</option>
+									<option value="Offline">Offline</option>
+								</select>
+							</div>
+
+
+							<div class="form-group">
+								<label>StartDateAndTime</label>
+								<input type="datetime-local" class="form-control" name="startDateAndTime" required="required" th:value="${formModel.startDateAndTime}"
+									id="startDateAndTime" onchange="setEndDate()" />
+							</div>
+							<div class="form-group">
+								<label>CourseEndDate</label>
+								<input type="datetime-local" class="form-control" name="courseEndDate"
+									id="courseEndDate" />
+							</div>
+							
+
+							<button class="btn btn-primary btn-block">Submit</button>
+
+						</form>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+		
+		<script>
+		function setEndDate() {
+			var startDate = new Date(document.getElementById('startDateAndTime').value);
+			var endDate = new Date(startDate.getTime() + (90 * 24 * 60 * 60 * 1000)); // add 90 days
+			var endDateString = endDate.toISOString().slice(0, 16); // format as yyyy-MM-ddThh:mm
+			if (endDate.getTime() <= startDate.getTime()) {
+				// If end date is earlier than or equal to start date, reset end date to null
+				document.getElementById('courseEndDate').value = '';
+				alert('End date cannot be earlier than or equal to start date.');
+			} else {
+				document.getElementById('courseEndDate').value = endDateString;
+			}
+		}
+	</script>
+	<script>
+		function setFees() {
+			var selectCourse = document.getElementsByName('selectCourse')[0];
+			var feesInput = document.getElementById('fees');
+			if (selectCourse.value === 'CoreJava') {
+				feesInput.value = '7500';
+			} else if (selectCourse.value === 'AdvanceJava') {
+				feesInput.value = '7000';
+			}else if (selectCourse.value === 'webTtechnology') {
+				feesInput.value = '8000';
+			}else if (selectCourse.value === 'Python') {
+				feesInput.value = '7000';
+			}else if (selectCourse.value === 'JavaFullStack') {
+				feesInput.value = '13000';
+			}else if (selectCourse.value === '>c') {
+				feesInput.value = '8000';
+			}else if (selectCourse.value === '>c++') {
+				feesInput.value = '8500';
+			}
+		}
+	</script>
+</body>
+
+</html>
