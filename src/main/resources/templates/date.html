@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calendar Date and Current Date</title>
+  <style>
+    #calendarForm {
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+    #currentDate {
+      text-align: center;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="calendarForm">
+    <form onsubmit="return showDates(event)">
+      <label for="calendarDate">Select a date:</label>
+      <input type="date" id="calendarDate" required>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  
+  <div id="selectedDate" style="display: none;"></div>
+  <div id="currentDate"></div>
+
+  <script>
+    function showDates(event) {
+      event.preventDefault();
+      
+      var calendarDateInput = document.getElementById('calendarDate');
+      var selectedDateElement = document.getElementById('selectedDate');
+      var currentDateElement = document.getElementById('currentDate');
+      
+      var selectedDate = new Date(calendarDateInput.value);
+      var currentDate = new Date();
+      
+      selectedDateElement.innerHTML = "Selected Date: " + formatDate(selectedDate);
+      selectedDateElement.style.display = 'block';
+      
+      currentDateElement.innerHTML = "Current Date: " + formatDate(currentDate);
+      currentDateElement.style.display = 'block';
+      
+      return false;
+    }
+    
+    function formatDate(date) {
+      var day = date.getDate();
+      var month = date.getMonth() + 1;
+      var year = date.getFullYear();
+      
+      return day + "/" + month + "/" + year;
+    }
+  </script>
+</body>
+</html>
